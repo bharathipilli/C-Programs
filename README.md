@@ -1,7 +1,7 @@
-### 1. Input an array of size n and print all elements.
-'''c
+###  1. Input an array of size n and print all elements.
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Write a c program that input an array of size n and print all elements.*
+ *  1. Input an array of size n and print all elements.  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include<stdio.h>
@@ -34,7 +34,7 @@ The elements of array are : 2 3 4 5 6
 ### 2. Find the sum of all elements in an array.
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 01. Write a c to Find the sum of all elements in an array.  *
+ * 2. Write a c to Find the sum of all elements in an array.  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #include<stdio.h>
 int main(){
