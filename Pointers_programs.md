@@ -1,4 +1,5 @@
 1. Input an array of size n and print all elements using pointers
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 Input an array of size n and print all elements using pointers *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -36,6 +37,8 @@ Array elements are :10 20 30 40 50
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 2. Find the sum of all elements in an array using pointers  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+```c
+
 #include<stdio.h>
 int main(){
         int n,i,sum=0;
@@ -71,7 +74,8 @@ Sum of all the elements = 70
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * 3. Find the maximum element in an array.using pointers       *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
- 
+ ```c
+
 #include<stdio.h>
 int main(){
 
@@ -115,7 +119,8 @@ Maximum element = 123
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * 4. Find the minimum element in an array.using pointers       *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * /
-                                                             
+ ```c                                                            
+ 
 #include <stdio.h>
 
 int main() {
@@ -155,6 +160,7 @@ Minimum element = 5
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * 5. Count the number of even and odd numbers in an array using pointers *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * /
+```c
 
 #include <stdio.h>
 int main() {
@@ -198,6 +204,7 @@ Odd numbers  = 2
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * 6. Reverse the elements of an array using pointers *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * /
+```c
 
 #include <stdio.h>
 
@@ -246,6 +253,7 @@ Reversed array: 5 4 3 2
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * 7. Copy elements of one array into another array using pointers
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * /
+```c
 
 #include <stdio.h>
 
@@ -285,7 +293,7 @@ Elements of second array: 2 3 4 5 6
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * 8. Find the average of all elements in an array using pointers
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * /
-// 8. Find the average of all elements in an array using pointers
+```c
 #include <stdio.h>
 
 int main() {
