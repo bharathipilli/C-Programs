@@ -362,7 +362,7 @@ int main() {
 
     printf("Positive elements = %d\n", positive);
     printf("Negative elements = %d\n", negative);
-    printf("Zero elements     = %d\n", zero);
+    printf("Zero elements = %d\n", zero);
 
     return 0;
 }
@@ -373,5 +373,5 @@ Enter size of array: 6
 Enter 6 elements: 4 -5 0 2 -3 9
 Positive elements = 3
 Negative elements = 2
-Zero elements     = 1
+Zero elements = 1
 ```
