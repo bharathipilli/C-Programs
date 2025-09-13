@@ -1,6 +1,6 @@
 1. Input an array of size n and print all elements using pointers
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 1. Input an array of size n and print all elements using pointers   *
+Input an array of size n and print all elements using pointers *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #include<stdio.h>
 int main(){
@@ -34,7 +34,7 @@ Array elements are :10 20 30 40 50
 
 2. Find the sum of all elements in an array using pointers
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 2. Find the sum of all elements in an array using pointers    *
+ * 2. Find the sum of all elements in an array using pointers  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #include<stdio.h>
 int main(){
@@ -69,7 +69,7 @@ Sum of all the elements = 70
 ```
 3. Find the maximum element in an array using pointers
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* 3. Find the maximum element in an array.using pointers    *
+* 3. Find the maximum element in an array.using pointers       *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
  
 #include<stdio.h>
@@ -113,7 +113,7 @@ Maximum element = 123
 
 4. Find the minimum element in an array using pointers
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* 4. Find the minimum element in an array.using pointers    *
+* 4. Find the minimum element in an array.using pointers       *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * /
                                                              
 #include <stdio.h>
