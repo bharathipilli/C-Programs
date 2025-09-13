@@ -170,9 +170,9 @@ int main(){
 ### Output
 ```c
 Enter the size of the array : 6
-Enter the 6  elements : 2 9 5 6 8 6 1
-The count of even are : 4
-The count of odd are : 2
+Enter the 6  elements : 2 9 5 6 8 1 3
+The count of even are : 3
+The count of odd are : 3
 ```
 ### 6. Reverse the elements of an array.
 ```c
