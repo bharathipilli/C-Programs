@@ -285,3 +285,93 @@ Enter size of the array : 5
 Enter 5 elements : 1 2 3 4 5
 Average of array elements : 3.00
 ```
+### 9. Search for a given element in an array (Linear Search)
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 9. Search for a given element in an array (Linear Search)   *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include <stdio.h>
+
+int main() {
+    int n, i, key, found = 0;
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    printf("Enter %d elements: ", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter the element to search: ");
+    scanf("%d", &key);
+
+    for (i = 0; i < n; i++) {
+        if (arr[i] == key) {
+            found = 1;
+            break;   // stop as soon as we find it
+        }
+    }
+
+    if (found) {
+        printf("Element %d found at position %d\n", key, i + 1); // position = index+1
+    } else {
+        printf("Element %d not found in the array\n", key);
+    }
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 6
+Enter 6 elements: 2 4 1 5 7 8
+Enter the element to search: 7
+Element 7 found at position 5
+```
+### 10. Count the number of positive, negative, and zero elements in an array
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *  10. Count the number of positive, negative, and zero elements in an array  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int main() {
+    int n, i, positive = 0, negative = 0, zero = 0;
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    printf("Enter %d elements: ", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    for (i = 0; i < n; i++) {
+        if (arr[i] > 0) {
+            positive++;
+        } else if (arr[i] < 0) {
+            negative++;
+        } else {
+            zero++;
+        }
+    }
+
+    printf("Positive elements = %d\n", positive);
+    printf("Negative elements = %d\n", negative);
+    printf("Zero elements     = %d\n", zero);
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 6
+Enter 6 elements: 4 -5 0 2 -3 9
+Positive elements = 3
+Negative elements = 2
+Zero elements     = 1
+```
