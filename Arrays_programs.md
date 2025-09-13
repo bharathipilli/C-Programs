@@ -202,3 +202,86 @@ int main(){
 ```
 ### Output
 ```c
+enter the size of the array :5
+Enter the elements : 1 2 3 4 5
+5
+4
+3
+2
+1
+```
+### 7. Copy elements of one array into another array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *7. Copy elements of one array into another array.               *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+int main(){
+        int n,i;
+
+        printf("Enter the size of the array : ");
+
+        scanf("%d",&n);
+
+        int arr1[n],arr2[n];
+
+        printf("Enter the elements : ");
+        for(i=0;i<n;i++){
+                scanf("%d",&arr1[i]);
+        }
+
+        // Copy arr1 into arr2
+        for(i=0;i<n;i++){
+                arr2[i]= arr1[i];
+        }
+
+        printf("Copied array : ");
+        for(i=0;i<n;i++){
+                printf("%d\n",arr2[i]);
+        }
+
+        return 0;
+}
+```
+### Output
+```c
+Enter the size of the array: 5
+Enter 5 elements: 2 4 6 8 1
+Copied array (arr2): 2 4 6 8 1
+```
+### 8. Find the average of all elements in an array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 8. Find the average of all elements in an array.               *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+int main(){
+        int n,i;
+        float sum=0,avg;
+
+        printf("Enter size of the array : ");
+        scanf("%d",&n);
+
+        int arr[n];
+
+        printf("Enter %d elements : ",n);
+        for(i=0;i<n;i++){
+                scanf("%d",&arr[i]);
+
+                // Add each element to sum
+                sum+=arr[i];
+        }
+        avg = sum/n;    //Formula for average
+
+        printf("Average of array elements : %.2f\n",avg);
+
+        return 0;
+}
+```
+### Output
+```c
+Enter size of the array : 5
+Enter 5 elements : 1 2 3 4 5
+Average of array elements : 3.00
+```
