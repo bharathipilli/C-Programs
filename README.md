@@ -1,7 +1,7 @@
 ### 1. Input an array of size n and print all elements.
 '''c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Write a c program that input an array of size n and print all elements.    *
+Write a c program that input an array of size n and print all elements.*
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include<stdio.h>
