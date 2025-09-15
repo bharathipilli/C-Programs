@@ -375,3 +375,248 @@ Positive elements = 3
 Negative elements = 2
 Zero elements = 1
 ```
+### 11. Print array elements in alternate positions (odd/even indices).
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 11. Print array elements in alternate positions (odd/even indices).  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+int main(){
+        int n,i;
+        printf("Enter array size :");
+        scanf("%d",&n);
+
+        int arr[n];
+
+        printf("Enter %d elements:",n);
+        for(i=0;i<n;i++){
+                scanf("%d",&arr[i]);
+        }
+
+        //print elements at even indices
+
+        printf("Elements at even indices are : ");
+        for(i=0;i<n;i+=2){
+                printf("%d ",arr[i]);
+        }
+
+        printf("\n");
+
+
+         //print elements at odd  indices
+
+        printf("Elements at odd  indices are : ");
+        for(i=1;i<n;i+=2){
+                printf("%d ",arr[i]);
+        }
+        return 0;
+}
+```
+### Output
+```c
+Enter array size :6
+Enter 6 elements:20 30 40 50 60 70
+Elements at even indices are : 20 40 60
+Elements at odd  indices are : 30 50 70 
+```
+### 12. Find the second largest element in an array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 12. Find the second largest element in an array.  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+
+int main() {
+    int n, i;
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements: ", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    int max1,max2;
+
+    // Initialize with first two elements by comparing which is largest
+    if (arr[0] >  arr[1]) {
+        max1 = arr[0];
+        max2 = arr[1];
+    } else {
+        max1 = arr[1];
+        max2 = arr[0];
+    }
+
+    // Traverse the rest of the array
+    for (i = 2; i < n; i++) {
+        if (arr[i] > max1) {
+            max2 = max1;   // old smallest becomes second smallest
+            max1 = arr[i]; // new smallest
+        } else if (arr[i] > max2 && arr[i] != max1) {
+            max2 = arr[i];
+        }
+    }
+
+    printf("Largest element = %d\n", max1);
+    printf("Second largest element = %d\n", max2);
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 5
+Enter 5 elements: 23 45 78 54 98
+Largest element = 98
+Second largest element = 78
+```
+### 13. Find the second smallest element in an array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *13. Find the second smallest element in an array.  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+
+int main() {
+    int n, i;
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements: ", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    int min1, min2;
+
+    // Initialize with first two elements
+    if (arr[0] < arr[1]) {
+        min1 = arr[0];
+        min2 = arr[1];
+    } else {
+        min1 = arr[1];
+        min2 = arr[0];
+    }
+
+    // Traverse the rest of the array
+    for (i = 2; i < n; i++) {
+        if (arr[i] < min1) {
+            min2 = min1;   // old smallest becomes second smallest
+            min1 = arr[i]; // new smallest
+        } else if (arr[i] < min2 && arr[i] != min1) {
+            min2 = arr[i];
+        }
+    }
+
+    printf("Smallest element = %d\n", min1);
+    printf("Second smallest element = %d\n", min2);
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 5
+Enter 5 elements: 12 43 5 67 16
+Smallest element = 5
+Second smallest element = 12
+```
+### 14. Check if an array is sorted in ascending order.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *14. Check if an array is sorted in ascending order.  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+int main(){
+        int n,i;
+
+        printf("Enter the size of the array :");
+        scanf("%d",&n);
+
+        int arr[n];
+
+        printf("Enter %d elements : ",n);
+        for(i=0;i<n;i++){
+                scanf("%d",&arr[i]);
+        }
+
+        i=0;
+
+        while(i < n-1 && arr[i]<= arr[i+1]){
+                i++;
+        }
+
+        if(i == n-1 )
+                printf("The array is sorted in ascending order \n");
+        else
+                printf("The array is not sorted in ascending order\n");
+        return 0;
+}
+```
+### Output
+```c
+Enter the size of the array :5
+Enter 5 elements : 12 54 67 76 98
+The array is sorted in ascending order
+```
+
+### 15. Find the frequency of each element in an array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *15. Find the frequency of each element in an array. *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+int main() {
+    int n, i, j, count;
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements: ", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("\nFrequency of each element:\n");
+    for (i = 0; i < n; i++) {
+        count = 1; // start counting
+
+        // skip if element already counted
+        for (j = 0; j < i; j++) {
+            if (arr[i] == arr[j]) {
+                count = 0;
+                break;
+            }
+        }
+
+        if (count == 0)
+            continue;
+
+        // count frequency
+        for (j = i + 1; j < n; j++) {
+            if (arr[i] == arr[j]) {
+                count++;
+            }
+        }
+
+        printf("%d occurs %d times\n", arr[i], count);
+    }
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 6
+Enter 6 elements: 1 4 1 3 5 3
+
+Frequency of each element:
+1 occurs 2 times
+4 occurs 1 times
+3 occurs 2 times
+5 occurs 1 times
+```
