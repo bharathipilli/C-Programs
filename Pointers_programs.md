@@ -667,3 +667,58 @@ Frequency of each element:
 3 occurs 2 times
 5 occurs 1 times
 ```
+### 16. Merge two arrays into third using pointers
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *16. Merge two arrays into third using pointers *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+int main() {
+    int n1, n2, i;
+    printf("Enter size of first array: ");
+    scanf("%d", &n1);
+
+    int arr1[n1];
+    printf("Enter %d elements of first array: ", n1);
+    for (i = 0; i < n1; i++) {
+        scanf("%d", &arr1[i]);
+    }
+
+    printf("Enter size of second array: ");
+    scanf("%d", &n2);
+
+    int arr2[n2];
+    printf("Enter %d elements of second array: ", n2);
+    for (i = 0; i < n2; i++) {
+        scanf("%d", &arr2[i]);
+    }
+
+    int arr3[n1 + n2];   // merged array
+    int *ptr1 = arr1, *ptr2 = arr2, *ptr3 = arr3;
+
+    // Copy arr1 into arr3
+    for (i = 0; i < n1; i++) {
+        *(ptr3++) = *(ptr1++);
+    }
+
+    // Copy arr2 into arr3
+    for (i = 0; i < n2; i++) {
+        *(ptr3++) = *(ptr2++);
+    }
+
+    printf("Merged array: ");
+    for (i = 0; i < n1 + n2; i++) {
+        printf("%d ", arr3[i]);
+    }
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of first array: 3
+Enter 3 elements of first array: 20 30 40
+Enter size of second array: 3
+Enter 3 elements of second array: 10 50 60
+Merged array: 20 30 40 10 50 60
+```
