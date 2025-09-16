@@ -620,3 +620,229 @@ Frequency of each element:
 3 occurs 2 times
 5 occurs 1 times
 ```
+### 16. Merge two arrays into a third array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *16.Merge two arrays into a third array. *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+int main(){i
+        int n1,n2,n3,i,j;
+
+        printf("Enter size of the first array : ");
+        scanf("%d",&n1);
+
+        int arr1[n1];
+
+        printf("Enter %d elements of first array : ",n1);
+        for(i=0;i<n1;i++){
+                scanf("%d",&arr1[i]);
+        }
+
+        printf("Enter size of the second  array : ");
+        scanf("%d",&n2);
+
+        int arr2[n2];
+
+        printf("Enter %d elements of second array : ",n2);
+        for(i=0;i<n2;i++){
+                scanf("%d",&arr2[i]);
+        }
+
+        n3= n1+n2;
+
+        int arr3[n3];
+
+        //copy arr1 into arr3
+
+       for(i=0;i<n1;i++){
+                arr3[i] = arr1[i];
+       }
+        //copy arr2 into arr3
+
+       for(j=0;j<n2;j++){
+                arr3[i] = arr2[j];
+                i++;
+        }
+       printf("Merged array : ");
+       for(i=0;i<n3;i++){
+                 printf("%d ", arr3[i]);
+        }
+       return 0;
+}
+```
+### Output
+```c
+ Enter size of first array: 3
+Enter 3 elements of first array: 10 20 30
+Enter size of second array: 2
+Enter 2 elements of second array: 40 50
+Merged array: 10 20 30 40 50
+```
+### 17. Sort an array in ascending order (without using built-in sort).
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *17. Sort an array in ascending order (without using built-in sort). *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+int main(){
+        int n,i,j,temp;
+
+        printf("Enter the size of the array:");
+        scanf("%d",&n);
+
+        int arr[n];
+
+        printf("Enter %d elements : ",n);
+        for(i=0;i<n;i++){
+                scanf("%d",&arr[i]);
+        }
+
+        for(i=0;i<n-1;i++){
+                for(j=0;j<n-1-i;j++){
+                        if(arr[j] > arr[j+1]){
+                                temp = arr[j];
+                                arr[j] = arr[j+1];
+                                arr[j+1]=temp;
+                        }
+                }
+        }
+
+        printf("After sorting result of array = \n ");
+        for(i=0;i<n;i++){
+                printf("%d",arr[i]);
+        }
+
+        return 0;
+}
+
+### Output
+```c
+Enter the size of the array:5
+Enter 5 elements : 10 4 9 2 5
+After sorting result of array = 2 4 5 9 10
+```
+### 18. Sort an array in descending order.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *18. Sort an array in descending order. *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+int main(){
+        int n,i,j,temp;
+
+        printf("Enter the size of the array:");
+        scanf("%d",&n);
+
+        int arr[n];
+
+        printf("Enter %d elements : ",n);
+        for(i=0;i<n;i++){
+                scanf("%d",&arr[i]);
+        }
+
+        for(i=0;i<n-1;i++){
+                for(j=0;j<n-1-i;j++){
+                        if(arr[j] <  arr[j+1]){
+                                temp = arr[j];
+                                arr[j] = arr[j+1];
+                                arr[j+1]=temp;
+                        }
+                }
+        }
+
+        printf("After sorting result of array = \n ");
+        for(i=0;i<n;i++){
+                printf("%d",arr[i]);
+        }
+
+        return 0;
+}
+### Output
+```c
+Enter the size of the array:5
+Enter 5 elements : 4 2 8 5 1
+After sorting result of array = 8 5 4 2 1
+```
+### 19. Find the sum of all elements at even indices.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *19. Find the sum of all elements at even indices. *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+int main(){
+        int n,i,sum=0;
+
+        printf("Enter the size of the array : ");
+        scanf("%d",&n);
+
+        int arr[n];
+
+        printf("Enter %d elements : ",n);
+        for(i=0;i<n;i++){
+                scanf("%d",&arr[i]);
+        }
+
+        for(i=0;i<n;i++){
+                if(i % 2==0){
+                        sum += arr[i];
+                }
+        }
+
+        printf("Sum of all even indices = %d\n", sum);
+
+        return 0;
+}
+### Output
+```c
+Enter the size of the array : 5
+Enter 5 elements : 0 1 2 3 4
+Sum of all even indices = 6
+```
+### 20. Rotate an array by k positions (left rotation).
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 20. Rotate an array by k positions (left rotation). *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+int main(){
+        int n,i,j,k,temp;
+
+        printf("Enter the size of the array : ");
+        scanf("%d",&n);
+
+        int arr[n];
+
+        printf("Enter %d elements : ",n);
+        for(i=0;i<n;i++){
+                scanf("%d",&arr[i]);
+        }
+
+        printf("Number of positions to shift: ");
+        scanf("%d",&k);
+
+        k = k % n;
+
+        for(i=0;i < k ; i++){
+                temp = arr[0];
+                for(j=0;j<n-1;j++){
+                        arr[j] = arr[j+1];
+                }
+                arr[n-1] = temp;
+        }
+
+        printf(" Array after %d left rotations : \n ",k);
+        for(i=0;i<n;i++){
+                printf(" %d ",arr[i]);
+        }
+
+        return 0;
+}
+### Output
+```c
+Enter the size of the array : 5
+Enter 5 elements : 1 2 3 4 5
+Number of positions to shift: 2
+ Array after 2 left rotations :  3 4 5 1 2
+```
