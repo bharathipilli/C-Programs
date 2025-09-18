@@ -846,3 +846,227 @@ Enter 5 elements : 1 2 3 4 5
 Number of positions to shift: 2
  Array after 2 left rotations :  3 4 5 1 2
 ```
+### 21.Rotate an array by k positions (right rotation)
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 21 Rotate an array by k positions (right rotation) *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+int main(){
+        int n,k,i,j,temp;
+
+        printf("Enter the size of the array :");
+        scanf("%d",&n);
+
+        int arr[n];
+
+        printf("Enter %d elements : ",n);
+        for(i=0;i<n;i++){
+                scanf("%d",&arr[i]);
+        }
+
+        printf("Enter number of postions to rotate(k) : ");
+        scanf("%d",&k);
+
+        //Normalize k
+
+        k= k%n;
+
+        //perform rotation k times
+
+        for(i=0;i<k;i++){
+                temp = arr[n-1];  //it stores last element
+                for(j= n-1;j>0;j--){
+                        arr[j] = arr[j-1]; //shift right
+                }
+                arr[0] = temp; //it puts last element at first index
+        }
+
+        printf("Array after %d right rotations :\n ",k);
+        for(i=0;i<n;i++){
+                printf("%d ",arr[i]);
+        }
+
+        printf("\n");
+        return 0;
+}
+### Output
+```c
+Enter the size of the array :5
+Enter 5 elements : 1 2 3 4 5
+Enter number of postions to rotate(k) : 2
+Array after 2 right rotations :
+ 4 5 1 2 3
+```
+### 22. Find duplicate elements in an array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 22. Find duplicate elements in an array.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+int main(){
+        int n,i,j,k,found;
+
+        printf("Enter the size of array : ");
+        scanf("%d",&n);
+
+        int arr[n];
+
+        printf("Enter %d elements : ",n);
+        for(i=0;i<n;i++){
+                scanf("%d",&arr[i]);
+        }
+        printf("Duplicate elements are : \n");
+        for(i=0;i<n;i++){
+                found=0;
+                for(j=0;j<i;j++){
+                        if (arr[i] == arr[j]){
+                                found = 1;
+                                break;
+                        }
+                }
+                if(found)
+                        continue;
+                for(j=i+1;j<n;j++){
+                        if(arr[i] == arr[j]){
+                                printf("%d ",arr[i]);
+                                break;
+                        }
+
+                }
+        }
+        printf("\n");
+        return 0;
+}
+### Output
+```c
+Enter the size of array : 5
+Enter 5 elements : 1 2 1 2 3
+Duplicate elements are :
+1 2
+```
+### 23. Remove duplicate elements from an array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 23. Remove duplicate elements from an array.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+int main(){
+        int n,i,j,k;
+
+        printf("Enter size array : ");
+        scanf("%d",&n);
+
+        int arr[n];
+
+        printf("Enter %d elements : ",n);
+        for(i=0;i<n;i++){
+                scanf("%d",&arr[i]);
+        }
+
+        for(i=0;i<n;i++){
+                for(j =i+1;j<n;j++){
+                        if(arr[i] == arr[j]){
+                                for(k=j;k<n-1;k++){
+                                        arr[k] =arr[k+1];
+                                }
+                                n--;
+                                j--;
+                        }
+                }
+        }
+        printf("Array after removing duplicates : \n");
+        for(i=0;i<n;i++){
+                printf("%d ",arr[i]);
+        }
+        printf("\n");
+
+        return 0;
+}
+### Output
+```c
+Enter size array : 5
+Enter 5 elements : 1 2 1 3 4
+Array after removing duplicates :
+1 2 3 4
+```
+### 24. Find the element that appears only once in an array where every other element appears twice.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *  24. Find the element that appears only once in an array where every other element appears twice.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+int main(){
+        int n,i,result=0;
+
+         printf("Enter size of array: ");
+                scanf("%d", &n);
+
+        int arr[n];
+        printf("Enter %d elements: ", n);
+        for (i = 0; i < n; i++) {
+                scanf("%d", &arr[i]);
+        }
+
+        //XOR all the elements
+
+        for(i=0;i<n;i++){
+                result ^=arr[i];
+        }
+
+        printf("The element that appears only once is : %d\n",result);
+        return 0;
+}
+### Output
+```c
+Enter size of array: 5
+Enter 5 elements: 10 20 30 20 30
+The element that appears only once is : 10
+```
+### 25. Find the intersection of two arrays.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 25. Find the intersection of two arrays.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+int main() {
+    int n1, n2, i, j;
+
+    printf("Enter size of first array: ");
+    scanf("%d", &n1);
+    int arr1[n1];
+    printf("Enter %d elements: ", n1);
+    for (i = 0; i < n1; i++) {
+        scanf("%d", &arr1[i]);
+    }
+
+    printf("Enter size of second array: ");
+    scanf("%d", &n2);
+    int arr2[n2];
+    printf("Enter %d elements: ", n2);
+    for (i = 0; i < n2; i++) {
+        scanf("%d", &arr2[i]);
+    }
+
+    printf("Intersection of the two arrays:\n");
+    for (i = 0; i < n1; i++) {
+        for (j = 0; j < n2; j++) {
+            if (arr1[i] == arr2[j]) {
+                printf("%d ", arr1[i]);
+                break; // it stop checking arr2 once a match is found
+            }
+        }
+    }
+    printf("\n");
+
+    return 0;
+}
+### Output
+```c
+Enter size of first array: 5
+Enter 5 elements: 1 2 3 4 5
+Enter size of second array: 5
+Enter 5 elements: 3 4 5 6 7
+Intersection of the two arrays:
+3 4 5
+```
