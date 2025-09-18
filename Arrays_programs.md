@@ -716,7 +716,7 @@ int main(){
 
         return 0;
 }
-
+```
 ### Output
 ```c
 Enter the size of the array:5
@@ -759,6 +759,7 @@ int main(){
 
         return 0;
 }
+```
 ### Output
 ```c
 Enter the size of the array:5
@@ -794,6 +795,7 @@ int main(){
 
         return 0;
 }
+```
 ### Output
 ```c
 Enter the size of the array : 5
@@ -839,6 +841,7 @@ int main(){
 
         return 0;
 }
+```
 ### Output
 ```c
 Enter the size of the array : 5
@@ -890,6 +893,7 @@ int main(){
         printf("\n");
         return 0;
 }
+```
 ### Output
 ```c
 Enter the size of the array :5
@@ -938,6 +942,7 @@ int main(){
         printf("\n");
         return 0;
 }
+```
 ### Output
 ```c
 Enter the size of array : 5
@@ -983,6 +988,7 @@ int main(){
 
         return 0;
 }
+```
 ### Output
 ```c
 Enter size array : 5
@@ -1017,6 +1023,7 @@ int main(){
         printf("The element that appears only once is : %d\n",result);
         return 0;
 }
+```
 ### Output
 ```c
 Enter size of array: 5
@@ -1061,6 +1068,7 @@ int main() {
 
     return 0;
 }
+```
 ### Output
 ```c
 Enter size of first array: 5
