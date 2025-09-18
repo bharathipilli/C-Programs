@@ -722,3 +722,419 @@ Enter size of second array: 3
 Enter 3 elements of second array: 10 50 60
 Merged array: 20 30 40 10 50 60
 ```
+### 17. Sort an array in ascending order (without using built-in sort).
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *17. Sort an array in ascending order (without using built-in sort). *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+int main(){
+        int n,i,j,temp;
+
+        printf("Enter the size of the array:");
+        scanf("%d",&n);
+
+        int arr[n];
+        int *ptr=arr;
+
+        printf("Enter %d elements : ",n);
+        for(i=0;i<n;i++){
+                scanf("%d",(ptr+i));
+        }
+
+        for(i=0;i<n-1;i++){
+                for(j=0;j<n-1-i;j++){
+                        if(*(ptr+j) > *(ptr+j+1)){
+                                temp = *(ptr+j);
+                                *(ptr+j) = *(ptr+j+1);
+                                *(ptr+j+1)=temp;
+                        }
+                }
+        }
+
+        printf("After sorting result of array = \n ");
+        for(i=0;i<n;i++){
+                printf("%d\t",*(ptr+i));
+        }
+
+        return 0;
+}
+### Output
+```c
+Enter the size of the array:5
+Enter 5 elements : 10 4 9 2 5
+After sorting result of array = 2 4 5 9 10
+```
+### 18. Sort an array in descending order.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *18. Sort an array in descending order. *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+int main(){
+        int n,i,j,temp;
+
+        printf("Enter the size of the array:");
+        scanf("%d",&n);
+
+        int arr[n];
+
+        int *ptr=arr;
+
+        printf("Enter %d elements : ",n);
+        for(i=0;i<n;i++){
+                scanf("%d",(ptr+i));
+        }
+
+        for(i=0;i<n-1;i++){
+                for(j=0;j<n-1-i;j++){
+                        if(*(ptr+j) <  *(ptr+j+1)){
+                                temp = *(ptr+j);
+                                *(ptr+j) =  *(ptr+j+1);
+                                *(ptr+j+1)=temp;
+                        }
+                }
+        }
+
+        printf("After sorting result of array = \n ");
+        for(i=0;i<n;i++){
+                printf("%d\n",*(ptr+i));
+        }
+
+        return 0;
+}
+```
+### Output
+```c
+Enter the size of the array:5
+Enter 5 elements : 4 2 8 5 1
+After sorting result of array = 8 5 4 2 1
+```
+### 19. Find the sum of all elements at even indices.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *19. Find the sum of all elements at even indices. *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+int main(){
+        int n,i,sum=0;
+
+
+        printf("Enter the size of the array : ");
+        scanf("%d",&n);
+
+        int arr[n];
+
+        int *ptr=arr;
+        printf("Enter %d elements : ",n);
+        for(i=0;i<n;i++){
+                scanf("%d",(ptr +i));
+        }
+        for(i=0;i<n;i++){
+                if(i % 2==0){
+                        sum += *(ptr+i);
+                }
+        }
+
+        printf("Sum of all even indices = %d\n", sum);
+
+        return 0;
+}
+```
+### Output
+```c
+Enter the size of the array : 5
+Enter 5 elements : 0 1 2 3 4
+Sum of all even indices = 6
+```
+### 20. Rotate an array by k positions (left rotation).
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 20. Rotate an array by k positions (left rotation). *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+int main(){
+        int n,i,j,k,temp;
+
+        printf("Enter the size of the array : ");
+        scanf("%d",&n);
+
+        int arr[n];
+        int *ptr=arr;
+        printf("Enter %d elements : ",n);
+        for(i=0;i<n;i++){
+                scanf("%d",(ptr + i));
+        }
+
+        printf("Number of positions to shift: ");
+        scanf("%d",&k);
+
+        k = k % n;
+
+        for(i=0;i < k ; i++){
+                temp = *( ptr + 0 );
+                for(j=0;j<n-1;j++){
+                        *(ptr + j) = *(ptr + j +1);
+                }
+                *(ptr + n -1) = temp;
+        }
+
+        printf(" Array after %d left rotations : \n ",k);
+        for(i=0;i<n;i++){
+                printf(" %d ",*(ptr+i));
+        }
+
+        return 0;
+}
+```
+### Output
+```c
+Enter the size of the array : 5
+Enter 5 elements : 1 2 3 4 5
+Number of positions to shift: 2
+ Array after 2 left rotations :  3 4 5 1 2
+```
+### 21.Rotate an array by k positions (right rotation)
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 21 Rotate an array by k positions (right rotation) *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+int main(){
+        int n,k,i,j,temp;
+
+        printf("Enter the size of the array :");
+        scanf("%d",&n);
+
+        int arr[n];
+        int *ptr = arr;
+        printf("Enter %d elements : ",n);
+        for(i=0;i<n;i++){
+                scanf("%d",(ptr +i));
+        }
+
+        printf("Enter number of postions to rotate(k) : ");
+        scanf("%d",&k);
+
+        //Normalize k
+
+        k= k%n;
+
+        //perform rotation k times
+
+        for(i=0;i<k;i++){
+                temp = *(ptr+n-1);  //it stores last element
+                for(j= n-1;j>0;j--){
+                        *(ptr +j) = *(ptr+j-1); //shift right
+                }
+                *(ptr+0) = temp; //it puts last element at first index
+        }
+
+        printf("Array after %d right rotations :\n ",k);
+        for(i=0;i<n;i++){
+                printf("%d ",*(ptr+i));
+        }
+
+        printf("\n");
+        return 0;
+}
+```
+### Output
+```c
+Enter the size of the array :5
+Enter 5 elements : 1 2 3 4 5
+Enter number of postions to rotate(k) : 2
+Array after 2 right rotations :
+ 4 5 1 2 3
+```
+### 22. Find duplicate elements in an array using pointers.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 22. Find duplicate elements in an array using pointers.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+int main(){
+        int n,i,j,k,found;
+
+        printf("Enter the size of array : ");
+        scanf("%d",&n);
+
+        int arr[n];
+        int *ptr=arr;
+        printf("Enter %d elements : ",n);
+        for(i=0;i<n;i++){
+                scanf("%d",(ptr+i));
+        }
+        printf("Duplicate elements are : \n");
+        for(i=0;i<n;i++){
+                found=0;
+                for(j=0;j<i;j++){
+                        if (*(ptr+i) == *(ptr+j)){
+                                found = 1;
+                                break;
+                        }
+                }
+                if(found)
+                        continue;
+                for(j=i+1;j<n;j++){
+                        if(*(ptr+i)  == *(ptr+j)){
+                                printf("%d ",*(ptr+i));
+                                break;
+                        }
+
+                }
+        }
+        printf("\n");
+        return 0;
+}
+```
+### Output
+```c
+Enter the size of array : 5
+Enter 5 elements : 1 2 1 2 3
+Duplicate elements are :
+1 2
+```
+### 23. Remove duplicate elements from an array using pointers.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 23. Remove duplicate elements from an array.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int main() {
+    int n, i, j, k;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    int *ptr = arr; // pointer to array
+
+    printf("Enter %d elements: ", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", (ptr + i)); // input using pointer
+    }
+
+    // Remove duplicates
+    for (i = 0; i < n; i++) {
+        for (j = i + 1; j < n; j++) {
+            if (*(ptr + i) == *(ptr + j)) {
+                // Shift elements left
+                for (k = j; k < n - 1; k++) {
+                    *(ptr + k) = *(ptr + k + 1);
+                }
+                n--;   // reduce array size
+                j--;   // recheck current index after shifting
+            }
+        }
+    }
+
+    printf("Array after removing duplicates:\n");
+    for (i = 0; i < n; i++) {
+        printf("%d ", *(ptr + i)); // printing using pointer
+    }
+    printf("\n");
+
+    return 0;
+}
+
+
+```
+### Output
+```c
+Enter size array : 5
+Enter 5 elements : 1 2 1 3 4
+Array after removing duplicates :
+1 2 3 4
+```
+### 24. Find the element that appears only once in an array where every other element appears twice using pointers.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *  24. Find the element that appears only once in an array where every other element appears twice.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int main() {
+    int n, i, result = 0;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    int *ptr = arr; // pointer to the array
+
+    printf("Enter %d elements: ", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", (ptr + i));  // input using pointer
+    }
+
+    // XOR all the elements using pointer
+    for (i = 0; i < n; i++) {
+        result ^= *(ptr + i);  // accessing with pointer
+    }
+
+    printf("The element that appears only once is : %d\n", result);
+
+    return 0;
+}
+
+```
+### Output
+```c
+Enter size of array: 5
+Enter 5 elements: 10 20 30 20 30
+The element that appears only once is : 10
+```
+### 25. Find the intersection of two arrays using pointers.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 25. Find the intersection of two arrays using pointers.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int main() {
+    int n1, n2, i, j;
+
+    printf("Enter size of first array: ");
+    scanf("%d", &n1);
+    int arr1[n1];
+    int *p1 = arr1;   // pointer to first array
+
+    printf("Enter %d elements: ", n1);
+    for (i = 0; i < n1; i++) {
+        scanf("%d", (p1 + i));   // input using pointer
+    }
+
+    printf("Enter size of second array: ");
+    scanf("%d", &n2);
+    int arr2[n2];
+    int *p2 = arr2;   // pointer to second array
+
+    printf("Enter %d elements: ", n2);
+    for (i = 0; i < n2; i++) {
+        scanf("%d", (p2 + i));   // input using pointer
+    }
+
+    printf("Intersection of the two arrays:\n");
+    for (i = 0; i < n1; i++) {
+        for (j = 0; j < n2; j++) {
+            if (*(p1 + i) == *(p2 + j)) {   // compare using pointers
+                printf("%d ", *(p1 + i));   // print element using pointer
+                break; 
+            }
+        }
+    }
+    printf("\n");
+
+    return 0;
+}
+
+```
+### Output
+```c
+Enter size of first array: 5
+Enter 5 elements: 1 2 3 4 5
+Enter size of second array: 5
+Enter 5 elements: 3 4 5 6 7
+Intersection of the two arrays:
+3 4 5
+```
