@@ -1147,8 +1147,6 @@ Enter size of the second array : 5
 Enter elements of first array : 3 4 5 6 7
 Union of arrays : 1234567
 ```
-                                          
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 ### 27. Insert an element at a given position in an array.
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
