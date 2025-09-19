@@ -999,7 +999,6 @@ Duplicate elements are :
  * 23. Remove duplicate elements from an array.*
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #include <stdio.h>
-
 int main() {
     int n, i, j, k;
 
@@ -1138,3 +1137,271 @@ Enter 5 elements: 3 4 5 6 7
 Intersection of the two arrays:
 3 4 5
 ```
+### 26. Find the union of two arrays using pointers.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 26. Find the union of two arrays.*
+#include <stdio.h>
+
+int main() {
+    int n1, n2, i, j, k = 0;
+
+    printf("Enter size of the first array: ");
+    scanf("%d", &n1);
+
+    int arr1[n1];
+    printf("Enter elements of first array: ");
+    int *ptr1 = arr1; 
+    for (i = 0; i < n1; i++) {
+        scanf("%d", (ptr1 + i));
+    }
+
+    printf("Enter size of the second array: ");
+    scanf("%d", &n2);
+
+    int arr2[n2];
+    printf("Enter elements of second array: ");
+    int *ptr2 = arr2;  
+    for (i = 0; i < n2; i++) {
+        scanf("%d", (ptr2 + i));
+    }
+
+    int unionArr[n1 + n2];
+    int *ptrU = unionArr;  // pointer to union array
+
+    // Copy arr1 into unionArr
+    for (i = 0; i < n1; i++) {
+        *(ptrU + k) = *(ptr1 + i);
+        k++;
+    }
+
+    // Add arr2 elements if not already present
+    for (i = 0; i < n2; i++) {
+        int found = 0;
+        for (j = 0; j < k; j++) {
+            if (*(ptr2 + i) == *(ptrU + j)) {
+                found = 1;
+                break;
+            }
+        }
+        if (!found) {
+            *(ptrU + k) = *(ptr2 + i);
+            k++;
+        }
+    }
+
+    // Print union
+    printf("Union of arrays: ");
+    for (i = 0; i < k; i++) {
+        printf("%d ", *(ptrU + i));
+    }
+
+    return 0;
+}
+
+```
+### Output
+```c
+Enter size of the first array : 5
+Enter elements of first array : 1 2 3 4 5
+Enter size of the second array : 5
+Enter elements of first array : 3 4 5 6 7
+Union of arrays : 1234567
+```
+### 27. Insert an element at a given position in an array using pointers.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 27. Insert an element at a given position in an array.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int main() {
+    int n, pos, i, element;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[50];
+    int *ptr = arr;  
+
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", (ptr + i));  
+    }
+
+    // Input element and position
+    printf("Enter element to insert: ");
+    scanf("%d", &element);
+    printf("Enter position (1 to %d): ", n + 1);
+    scanf("%d", &pos);
+
+    if (pos < 1 || pos > n + 1) {
+        printf("Invalid position!\n");
+    } else {
+        // Shift elements to the right using pointers
+        for (i = n; i >= pos; i--) {
+            *(ptr + i) = *(ptr + i - 1);
+        }
+
+        *(ptr + pos - 1) = element; // Insert element using pointer
+        n++; // Increase size
+
+        
+        printf("Array after insertion: ");
+        for (i = 0; i < n; i++) {
+            printf("%d ", *(ptr + i));
+        }
+    }
+
+    return 0;
+}
+
+```
+### Output
+```c
+Enter size of array: 5
+Enter 5 elements:
+20 40 50 60 70
+Enter element to insert: 30
+Enter position (1 to 6): 2
+Array after insertion: 20 30 40 50 60 70
+```
+### 28. Delete an element from a given position in an array using pointers.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *28. Delete an element from a given position in an array.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int main() {
+    int n, pos, i;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[50];  
+    int *ptr = arr;   
+
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", (ptr + i)); 
+    }
+
+    // Position to delete
+    printf("Enter position to delete (1 to %d): ", n);
+    scanf("%d", &pos);
+
+    if (pos < 1 || pos > n) {
+        printf("Invalid position!\n");
+    } else {
+        // Shift elements to left using pointer
+        for (i = pos - 1; i < n - 1; i++) {
+            *(ptr + i) = *(ptr + i + 1);
+        }
+        n--;  // size decreases
+
+        printf("Array after deletion: ");
+        for (i = 0; i < n; i++) {
+            printf("%d ", *(ptr + i));
+        }
+    }
+
+    return 0;
+}
+
+```
+### Output
+```c
+Enter size of array: 5
+Enter 5 elements:
+20 45 67 83 49
+Enter position to delete (1 to 5): 3
+Array after deletion: 20 45 83 49
+```
+### 29. Count the frequency of a specific element in an array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *29. Count the frequency of a specific element in an array.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int main() {
+    int n, i, element, count = 0;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[50];
+    int *ptr = arr;  
+
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", (ptr + i));   
+    }
+
+    printf("Enter element to find frequency: ");
+    scanf("%d", &element);
+
+    for (i = 0; i < n; i++) {
+        if (*(ptr + i) == element) {
+            count++;
+        }
+    }
+    printf("Frequency of %d = %d\n", element, count);
+
+    return 0;
+}
+
+```
+### Output
+```c
+Enter size of array: 5
+Enter 5 elements:
+18 1 18 27 31
+Enter element to find frequency: 18
+Frequency of 18 = 2
+```
+### 30.Find the largest and smallest element in a single scan.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *30.Find the largest and smallest element in a single scan.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+int main() {
+    int n, i;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    int *ptr=arr;
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    int max = *(ptr+0), min = *(ptr+0);
+
+    // Single scan
+    for (i = 1; i < n; i++) {
+        if (*(ptr+i) > max)
+            max = *(ptr+i);
+        if (*(ptr+i) < min)
+            min = *(ptr+i);
+    }
+
+    printf("Largest element = %d\n", max);
+    printf("Smallest element = %d\n", min);
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 5
+Enter 5 elements:
+45 89 34 12 9
+Largest element = 89
+Smallest element = 9
+```
+
