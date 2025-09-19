@@ -1078,3 +1078,260 @@ Enter 5 elements: 3 4 5 6 7
 Intersection of the two arrays:
 3 4 5
 ```
+### 26. Find the union of two arrays.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 26. Find the union of two arrays.*
+#include<stdio.h>
+int main(){
+
+        int n1,n2,i,j,k=0;
+
+        printf("Enter size of the first array : ");
+        scanf("%d",&n1);
+
+        int arr1[n1];
+        printf("Enter elements of first array : ");
+        for(i=0;i<n1;i++){
+                scanf("%d",&arr1[i]);
+        }
+
+        int arr2[n2];
+
+        printf("Enter size of the second array : ");
+        scanf("%d",&n2);
+
+        printf("Enter elements of first array : ");
+        for(int i=0;i<n2;i++){
+                scanf("%d",&arr2[i]);
+        }
+
+        int unionArr[n1+n2];
+
+        // copy arr1 into unionArr
+
+        for(i=0;i<n1;i++){
+                unionArr[k++] = arr1[i];
+        }
+
+        //add elements of arr2 if not already in result
+
+        for(i=0;i<n2;i++){
+                int found =0;
+                for(j=0;j<k;j++){
+                        if (arr2[i] == unionArr[j]){
+                                found = 1;
+                                break;
+                        }
+                }
+                if(!found){
+                        unionArr[k++] = arr2[i];
+                }
+        }
+
+        //step 3: print union
+
+        printf("Union of arrays : ");
+        for(i=0;i<k;i++){
+                printf("%d",unionArr[i]);
+        }
+
+        return 0;
+}
+```
+### Output
+```c
+Enter size of the first array : 5
+Enter elements of first array : 1 2 3 4 5
+Enter size of the second array : 5
+Enter elements of first array : 3 4 5 6 7
+Union of arrays : 1234567
+```
+                                          
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+### 27. Insert an element at a given position in an array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 27. Insert an element at a given position in an array.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+int main() {
+    int n, pos, i, element;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[50];
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Input element and position
+    printf("Enter element to insert: ");
+    scanf("%d", &element);
+    printf("Enter position (1 to %d): ", n+1);
+    scanf("%d", &pos);
+
+    if (pos < 1 || pos > n+1) {
+        printf("Invalid position!\n");
+    } else {
+        // Shift elements to right
+        for (i = n; i >= pos; i--) {
+            arr[i] = arr[i-1];
+        }
+
+        arr[pos-1] = element; // Insert at correct place
+        n++; // Size increased
+
+        // Print array after insertion
+        printf("Array after insertion: ");
+        for (i = 0; i < n; i++) {
+            printf("%d ", arr[i]);
+        }
+    }
+
+    return 0;
+}
+
+```
+### Output
+```c
+Enter size of array: 5
+Enter 5 elements:
+20 40 50 60 70
+Enter element to insert: 30
+Enter position (1 to 6): 2
+Array after insertion: 20 30 40 50 60 70
+```
+### 28. Delete an element from a given position in an array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *28. Delete an element from a given position in an array.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+int main() {
+    int n, pos, i;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // position to delete
+    printf("Enter position to delete (1 to %d): ", n);
+    scanf("%d", &pos);
+
+    if (pos < 1 || pos > n) {
+        printf("Invalid position!\n");
+    } else {
+        // Shift elements to left
+        for (i = pos - 1; i < n - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
+        n--; 
+
+        printf("Array after deletion: ");
+        for (i = 0; i < n; i++) {
+            printf("%d ", arr[i]);
+        }
+    }
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 5
+Enter 5 elements:
+20 45 67 83 49
+Enter position to delete (1 to 5): 3
+Array after deletion: 20 45 83 49
+```
+### 29. Count the frequency of a specific element in an array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *29. Count the frequency of a specific element in an array.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+int main() {
+    int n, i, element, count = 0;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter element to find frequency: ");
+    scanf("%d", &element);
+
+    // Count frequency
+    for (i = 0; i < n; i++) {
+        if (arr[i] == element) {
+            count++;
+        }
+    }
+
+    printf("Frequency of %d = %d\n", element, count);
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 5
+Enter 5 elements:
+18 1 18 27 31
+Enter element to find frequency: 18
+Frequency of 18 = 2
+```
+### 30.Find the largest and smallest element in a single scan.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *30.Find the largest and smallest element in a single scan.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+int main() {
+    int n, i;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    int max = arr[0], min = arr[0];
+
+    // Single scan
+    for (i = 1; i < n; i++) {
+        if (arr[i] > max)
+            max = arr[i];
+        if (arr[i] < min)
+            min = arr[i];
+    }
+
+    printf("Largest element = %d\n", max);
+    printf("Smallest element = %d\n", min);
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 5
+Enter 5 elements:
+45 89 34 12 9
+Largest element = 89
+Smallest element = 9
+```
