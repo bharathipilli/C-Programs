@@ -1333,3 +1333,133 @@ Enter 5 elements:
 Largest element = 89
 Smallest element = 9
 ```
+### 31.Rearrange an array so that all negative numbers appear before positive numbers.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *31. Rearrange an array so that all negative numbers appear before positive numbers*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+int main(){
+        int n,i;
+
+        printf("Enter the size: ");
+        scanf("%d",&n);
+
+        int arr[n];
+
+        printf("Enter the elements : ");
+        for(i=0;i<n;i++){
+                scanf("%d",&arr[i]);
+        }
+
+
+        int left =0,right = n-1;
+
+        while(left < right){
+                while(arr[left]< 0 && left < right)
+                        left++;
+                while(arr[right]>=0 && left< right)
+                        right--;
+
+
+                if(left < right){
+                        int temp = arr[left];
+                        arr[left] = arr[right];
+                        arr[right]=temp;
+                }
+        }
+        printf("Rearranged array : \n");
+        for(i=0;i<n;i++){
+                printf("%d",arr[i]);
+        }
+
+        return 0;
+}
+```
+### Output
+```c
+Enter the size: 6
+Enter the elements : 1 2 3 0 -1 -3
+Rearranged array : -3 -1 3 0 2 1
+```
+### 32. Rearrange an array so that even numbers come before odd numbers.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *32. Rearrange an array so that even numbers come before odd numbers.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+int main() {
+    int n, i;
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    int left = 0, right = n - 1;
+
+    while(left<right){
+            while (arr[left] % 2==0 && left < right)
+                    left++;
+    while(arr[right]%2 !=0 && left < right )
+            right--;
+
+    if(left<right){
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right]=temp;
+          }
+    }
+    printf("Rearranged array : \n");
+    for(i=0;i<n;i++){
+            printf("%d",arr[i]);
+           }
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 6
+Enter 6 elements:
+1 4 6 2 7 3
+Rearranged array : 2 4 6 1 7 3
+```
+### 33. Find the first repeating element in an array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *33. Find the first repeating element in an array.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+int main() {
+    int n, i, j, found = 0;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Find first repeating element
+    for (i = 0; i < n; i++) {
+        for (j = i + 1; j < n; j++) {
+            if (arr[i] == arr[j]) {
+                printf("First repeating element: %d\n", arr[i]);
+                found = 1;
+                break;
+            }
+        }
+        if (found)
+            break;
+    }
+
+    if (!found)
+        printf("No repeating elements found.\n");
+
+    return 0;
+}
