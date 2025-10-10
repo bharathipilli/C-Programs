@@ -1404,4 +1404,425 @@ Enter 5 elements:
 Largest element = 89
 Smallest element = 9
 ```
+### 31.Rearrange an array so that all negative numbers appear before positive numbers using pointers.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *31. Rearrange an array so that all negative numbers appear before positive numbers*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter array elements: ");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    int *left = arr;          // Pointer to start
+    int *right = arr + n - 1; // Pointer to end
+    int temp;
+
+    // Rearrange negatives before positives
+    while (left < right) {
+        // Move left forward if it's already negative
+        while (*left < 0 && left < right)
+            left++;
+
+        // Move right backward if it's already positive
+        while (*right >= 0 && left < right)
+            right--;
+
+        // Swap if left is positive and right is negative
+        if (left < right) {
+            temp = *left;
+            *left = *right;
+            *right = temp;
+        }
+    }
+
+    printf("Rearranged array: ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+
+    return 0;
+}
+```
+### Output
+```c
+Enter the size: 6
+Enter the elements : 1 2 3 0 -1 -3
+Rearranged array : -3 -1 3 0 2 1
+```
+### 32. Rearrange an array so that even numbers come before odd numbers.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *32. Rearrange an array so that even numbers come before odd numbers.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter array elements: ");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    int *left = arr;          
+    int *right = arr + n - 1; 
+    int temp;
+
+    // Rearrange even numbers before odd numbers
+    while (left < right) {
+        // Move left forward if even
+        while (*left % 2 == 0 && left < right)
+            left++;
+
+        // Move right backward if odd
+        while (*right % 2 != 0 && left < right)
+            right--;
+
+        // Swap if left is odd and right is even
+        if (left < right) {
+            temp = *left;
+            *left = *right;
+            *right = temp;
+        }
+    }
+
+    printf("Rearranged array (even before odd): ");
+    for (int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+
+    return 0;
+}
+
+```
+### Output
+```c
+Enter size of array: 6
+Enter 6 elements:
+1 4 6 2 7 3
+Rearranged array : 2 4 6 1 7 3
+```
+### 33. Find the first repeating element in an array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *33. Find the first repeating element in an array.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", arr + i);  // Using pointer to store elements
+    }
+
+    int *p1, *p2;
+    int found = 0;
+
+    // Find first repeating element using pointers
+    for (p1 = arr; p1 < arr + n; p1++) {
+        for (p2 = p1 + 1; p2 < arr + n; p2++) {
+            if (*p1 == *p2) {
+                printf("First repeating element is: %d\n", *p1);
+                found = 1;
+                break;
+            }
+        }
+        if (found)
+            break;
+    }
+
+    if (!found)
+        printf("No repeating elements found.\n");
+
+    return 0;
+}
+
+
+```
+### Output
+```c
+Enter size of array: 6
+Enter 6 elements: 1 2 3 3 4 5
+First repeating element: 3
+```
+### 34. Find the first non-repeating element in an array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *34. Find the first non-repeating element in an array.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", arr + i);  // Using pointer to take input
+    }
+
+    int *p1, *p2;
+    int found = 0;
+
+    // Find first non-repeating element
+    for (p1 = arr; p1 < arr + n; p1++) {
+        int count = 0;
+        for (p2 = arr; p2 < arr + n; p2++) {
+            if (*p1 == *p2)
+                count++;
+        }
+        if (count == 1) {  // Appears only once
+            printf("First non-repeating element is: %d\n", *p1);
+            found = 1;
+            break;
+        }
+    }
+
+    if (!found)
+        printf("No non-repeating element found.\n");
+
+    return 0;
+}
+
+```
+### Output
+```c
+Enter size of array: 6
+Enter 6 elements:
+4 5 6 7 5 4
+First non-repeating element: 6
+```
+### 35. Find the missing number in an array containing numbers from 1 to n.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *35. Find the missing number in an array containing numbers from 1 to n.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int main() {
+    int n, i, sum = 0, total;
+
+    printf("Enter total numbers from 1 to n: ");
+    scanf("%d", &n);
+
+    int arr[n - 1]; // because one number is missing
+
+    printf("Enter %d numbers (from 1 to %d, one missing):\n", n - 1, n);
+    for (i = 0; i < n - 1; i++) {
+        scanf("%d", &arr[i]);
+        sum = sum + arr[i]; // calculate actual sum
+    }
+
+    total = n * (n + 1) / 2; // sum of first n natural numbers
+
+    printf("Missing number = %d\n", total - sum);
+
+    return 0;
+}
+```
+### Output
+```c
+Enter total numbers from 1 to n: 5
+Enter 4 numbers (from 1 to 5, one missing): 2 3 4 5 6
+Missing number = 1
+```
+### 36. Find the pair of elements whose sum is equal to a given number k.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *36. Find the pair of elements whose sum is equal to a given number k.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int main() {
+    int n, i, j, k, found = 0;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter the value of k (target sum): ");
+    scanf("%d", &k);
+
+    // Find pair with sum = k
+    for (i = 0; i < n; i++) {
+        for (j = i + 1; j < n; j++) {
+            if (arr[i] + arr[j] == k) {
+                printf("Pair found: (%d, %d)\n", arr[i], arr[j]);
+                found = 1;
+            }
+        }
+    }
+
+    if (!found)
+        printf("No pair found with sum %d.\n", k);
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 5
+Enter 5 elements: 2 3 4 5 6
+Enter the value of k (target sum): 6
+Pair found: (2, 4)
+```
+### 37. 37. Find the majority element (element occurring more than n/2 times).
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *37. Find the majority element (element occurring more than n/2 times).*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+int main() {
+    int n, i, j, count, found = 0;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Check frequency of each element
+    for (i = 0; i < n; i++) {
+        count = 1;
+        for (j = i + 1; j < n; j++) {
+            if (arr[i] == arr[j])
+                count++;
+        }
+
+        if (count > n / 2) {
+            printf("Majority element = %d\n", arr[i]);
+            found = 1;
+            break;
+        }
+    }
+
+    if (!found)
+        printf("No majority element found.\n");
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 6
+Enter 6 elements: 1 2 2 2 2 3
+Majority element = 2
+```
+### 38. Move all zeros to the end of the array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *38. Move all zeros to the end of the array.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+int main() {
+    int n, i, j = 0;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Move non-zero elements to the front
+    for (i = 0; i < n; i++) {
+        if (arr[i] != 0) {
+            arr[j] = arr[i];
+            j++;
+        }
+    }
+
+    // Fill remaining positions with zeros
+    while (j < n) {
+        arr[j] = 0;
+        j++;
+    }
+
+    // Print the updated array
+    printf("Array after moving zeros to the end:\n");
+    for (i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 6
+Enter 6 elements: 1 0 3 4 0 5 
+Array after moving zeros to the end: 1 3 4 5 0 0 
+```
+### 39. Find the maximum product of two elements in an array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *39. Find the maximum product of two elements in an array.*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+int main() {
+    int n, i, j;
+    int maxProduct, num1, num2;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    maxProduct = arr[0] * arr[1];  // assume first two as max product
+    num1 = arr[0];
+    num2 = arr[1];
+
+    // Check every possible pair
+    for (i = 0; i < n; i++) {
+        for (j = i + 1; j < n; j++) {
+            int product = arr[i] * arr[j];
+            if (product > maxProduct) {
+                maxProduct = product;
+                num1 = arr[i];
+                num2 = arr[j];
+            }
+        }
+    }
+
+    printf("Maximum product is %d (from %d × %d)\n", maxProduct, num1, num2);
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 6
+Enter 6 elements: 1 2 3 4 5 6
+Maximum product is 30 (from 5 × 6)
+```
+
 
