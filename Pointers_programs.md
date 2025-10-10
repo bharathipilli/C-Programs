@@ -1456,7 +1456,7 @@ Enter the size: 6
 Enter the elements : 1 2 3 0 -1 -3
 Rearranged array : -3 -1 3 0 2 1
 ```
-### 32. Rearrange an array so that even numbers come before odd numbers.
+### 32. Rearrange an array so that even numbers come before odd numbers using pointers.
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *32. Rearrange an array so that even numbers come before odd numbers.*
@@ -1510,7 +1510,7 @@ Enter 6 elements:
 1 4 6 2 7 3
 Rearranged array : 2 4 6 1 7 3
 ```
-### 33. Find the first repeating element in an array.
+### 33. Find the first repeating element in an array using pointers.
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *33. Find the first repeating element in an array.*
@@ -1525,7 +1525,7 @@ int main() {
     int arr[n];
     printf("Enter %d elements:\n", n);
     for (int i = 0; i < n; i++) {
-        scanf("%d", arr + i);  // Using pointer to store elements
+        scanf("%d", arr + i);  
     }
 
     int *p1, *p2;
@@ -1558,7 +1558,7 @@ Enter size of array: 6
 Enter 6 elements: 1 2 3 3 4 5
 First repeating element: 3
 ```
-### 34. Find the first non-repeating element in an array.
+### 34. Find the first non-repeating element in an array using pointers.
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *34. Find the first non-repeating element in an array.*
@@ -1607,7 +1607,7 @@ Enter 6 elements:
 4 5 6 7 5 4
 First non-repeating element: 6
 ```
-### 35. Find the missing number in an array containing numbers from 1 to n.
+### 35. Find the missing number in an array containing numbers from 1 to n using pointers.
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *35. Find the missing number in an array containing numbers from 1 to n.*
@@ -1615,25 +1615,28 @@ First non-repeating element: 6
 #include <stdio.h>
 
 int main() {
-    int n, i, sum = 0, total;
-
+    int n, total = 0, sum = 0;
     printf("Enter total numbers from 1 to n: ");
     scanf("%d", &n);
 
-    int arr[n - 1]; // because one number is missing
+    int arr[n - 1]; // one number is missing
 
     printf("Enter %d numbers (from 1 to %d, one missing):\n", n - 1, n);
-    for (i = 0; i < n - 1; i++) {
-        scanf("%d", &arr[i]);
-        sum = sum + arr[i]; // calculate actual sum
+    int *ptr;
+
+    // Using pointer to read and calculate sum
+    for (ptr = arr; ptr < arr + (n - 1); ptr++) {
+        scanf("%d", ptr);
+        sum += *ptr;  // Add value pointed by ptr
     }
 
-    total = n * (n + 1) / 2; // sum of first n natural numbers
+    total = n * (n + 1) / 2; // Sum of 1 to n
 
     printf("Missing number = %d\n", total - sum);
 
     return 0;
 }
+
 ```
 ### Output
 ```c
@@ -1641,33 +1644,34 @@ Enter total numbers from 1 to n: 5
 Enter 4 numbers (from 1 to 5, one missing): 2 3 4 5 6
 Missing number = 1
 ```
-### 36. Find the pair of elements whose sum is equal to a given number k.
+### 36. Find the pair of elements whose sum is equal to a given number k using pointers.
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *36. Find the pair of elements whose sum is equal to a given number k.*
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #include <stdio.h>
-
 int main() {
-    int n, i, j, k, found = 0;
+    int n, k, found = 0;
 
     printf("Enter size of array: ");
     scanf("%d", &n);
 
     int arr[n];
     printf("Enter %d elements:\n", n);
-    for (i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", arr + i);  // using pointer for input
     }
 
     printf("Enter the value of k (target sum): ");
     scanf("%d", &k);
 
-    // Find pair with sum = k
-    for (i = 0; i < n; i++) {
-        for (j = i + 1; j < n; j++) {
-            if (arr[i] + arr[j] == k) {
-                printf("Pair found: (%d, %d)\n", arr[i], arr[j]);
+    int *p1, *p2;
+
+    // Find pair with sum = k using pointers
+    for (p1 = arr; p1 < arr + n; p1++) {
+        for (p2 = p1 + 1; p2 < arr + n; p2++) {
+            if (*p1 + *p2 == k) {
+                printf("Pair found: (%d, %d)\n", *p1, *p2);
                 found = 1;
             }
         }
@@ -1678,6 +1682,7 @@ int main() {
 
     return 0;
 }
+
 ```
 ### Output
 ```c
@@ -1686,34 +1691,35 @@ Enter 5 elements: 2 3 4 5 6
 Enter the value of k (target sum): 6
 Pair found: (2, 4)
 ```
-### 37. 37. Find the majority element (element occurring more than n/2 times).
+### 37.Find the majority element (element occurring more than n/2 times) using pointers.
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *37. Find the majority element (element occurring more than n/2 times).*
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #include <stdio.h>
 int main() {
-    int n, i, j, count, found = 0;
-
+    int n, count, found = 0;
     printf("Enter size of array: ");
     scanf("%d", &n);
-
     int arr[n];
     printf("Enter %d elements:\n", n);
-    for (i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", arr + i);  // Using pointer to input values
     }
 
-    // Check frequency of each element
-    for (i = 0; i < n; i++) {
-        count = 1;
-        for (j = i + 1; j < n; j++) {
-            if (arr[i] == arr[j])
+    int *p1, *p2;
+
+    // Check frequency of each element using pointers
+    for (p1 = arr; p1 < arr + n; p1++) {
+        count = 0;
+
+        for (p2 = arr; p2 < arr + n; p2++) {
+            if (*p1 == *p2)
                 count++;
         }
 
         if (count > n / 2) {
-            printf("Majority element = %d\n", arr[i]);
+            printf("Majority element = %d\n", *p1);
             found = 1;
             break;
         }
@@ -1724,6 +1730,7 @@ int main() {
 
     return 0;
 }
+
 ```
 ### Output
 ```c
@@ -1731,46 +1738,48 @@ Enter size of array: 6
 Enter 6 elements: 1 2 2 2 2 3
 Majority element = 2
 ```
-### 38. Move all zeros to the end of the array.
+### 38. Move all zeros to the end of the array using pointers.
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *38. Move all zeros to the end of the array.*
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #include <stdio.h>
 int main() {
-    int n, i, j = 0;
-
+    int n;
     printf("Enter size of array: ");
     scanf("%d", &n);
 
     int arr[n];
     printf("Enter %d elements:\n", n);
-    for (i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", arr + i);  // using pointer for input
     }
+
+    int *p, *q;
+    q = arr; // q points to the position where next non-zero element will go
 
     // Move non-zero elements to the front
-    for (i = 0; i < n; i++) {
-        if (arr[i] != 0) {
-            arr[j] = arr[i];
-            j++;
+    for (p = arr; p < arr + n; p++) {
+        if (*p != 0) {
+            *q = *p;
+            q++;
         }
     }
-
-    // Fill remaining positions with zeros
-    while (j < n) {
-        arr[j] = 0;
-        j++;
+    // Filling remaining elements with zero
+    while (q < arr + n) {
+        *q = 0;
+        q++;
     }
 
     // Print the updated array
     printf("Array after moving zeros to the end:\n");
-    for (i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
+    for (p = arr; p < arr + n; p++) {
+        printf("%d ", *p);
     }
 
     return 0;
 }
+
 ```
 ### Output
 ```c
@@ -1785,7 +1794,8 @@ Array after moving zeros to the end: 1 3 4 5 0 0
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #include <stdio.h>
 int main() {
-    int n, i, j;
+    int n;
+    int *p1, *p2;
     int maxProduct, num1, num2;
 
     printf("Enter size of array: ");
@@ -1793,22 +1803,23 @@ int main() {
 
     int arr[n];
     printf("Enter %d elements:\n", n);
-    for (i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", arr + i);  // using pointer for input
     }
 
-    maxProduct = arr[0] * arr[1];  // assume first two as max product
+    // Assume first two elements as having the maximum product
+    maxProduct = arr[0] * arr[1];
     num1 = arr[0];
     num2 = arr[1];
 
-    // Check every possible pair
-    for (i = 0; i < n; i++) {
-        for (j = i + 1; j < n; j++) {
-            int product = arr[i] * arr[j];
+    // Check every possible pair using pointers
+    for (p1 = arr; p1 < arr + n; p1++) {
+        for (p2 = p1 + 1; p2 < arr + n; p2++) {
+            int product = (*p1) * (*p2);
             if (product > maxProduct) {
                 maxProduct = product;
-                num1 = arr[i];
-                num2 = arr[j];
+                num1 = *p1;
+                num2 = *p2;
             }
         }
     }
@@ -1817,6 +1828,7 @@ int main() {
 
     return 0;
 }
+
 ```
 ### Output
 ```c
