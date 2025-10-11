@@ -2072,3 +2072,92 @@ Enter size of second sorted array: 3
 Enter 3 elements of second array: 4 5 6
 Merged array: 1 2 3 4 5 6
 ```
+### 47. Find the kth smallest element in an array. 
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 47. Find the kth smallest element in an array.  *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int main() {
+    int n, k, i, j, temp;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for(i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    printf("Enter k: ");
+    scanf("%d", &k);
+
+    // Sort array using simple bubble sort
+    for(i = 0; i < n-1; i++) {
+        for(j = 0; j < n-i-1; j++) {
+            if(arr[j] > arr[j+1]) {
+                temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+
+    printf("The %dth smallest element = %d\n", k, arr[k-1]);
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 7
+Enter 7 elements: 2 5 3 8 4 6 1
+Enter k: 4
+The 4th smallest element = 4
+```
+### 48. Find the kth largest element in an array. 
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 48. Find the kth largest element in an array.  *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int main() {
+    int n, k, i, j, temp;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for(i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    printf("Enter k: ");
+    scanf("%d", &k);
+
+    // Sort array in ascending order using bubble sort
+    for(i = 0; i < n-1; i++) {
+        for(j = 0; j < n-i-1; j++) {
+            if(arr[j] > arr[j+1]) {
+                temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+
+    printf("The %dth largest element = %d\n", k, arr[n - k]);
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 6
+Enter 6 elements: 7 10 4 3 20 15
+Enter k: 3
+The 3th largest element = 10
+```
+
