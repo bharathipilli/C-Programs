@@ -1735,4 +1735,228 @@ Enter size of array: 6
 Enter 6 elements: 1 2 3 4 5 6
 Maximum product is 30 (from 5 × 6)
 ```
+### 40. Find the maximum sum of a contiguous subarray (Kadane’s Algorithm).
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *40. Find the maximum sum of a contiguous subarray (Kadane’s Algorithm).*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
 
+int main() {
+    int n, i;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    int max_so_far = arr[0];
+    int current_sum = arr[0];
+
+    for (i = 1; i < n; i++) {
+        // Step 1: Add current element or start new subarray
+        if (current_sum + arr[i] > arr[i])
+            current_sum = current_sum + arr[i];
+        else
+            current_sum = arr[i];
+
+        // Step 2: Update max sum if needed
+        if (current_sum > max_so_far)
+            max_so_far = current_sum;
+    }
+
+    printf("Maximum sum of a contiguous subarray = %d\n", max_so_far);
+
+    return 0;
+}
+
+```
+### Output
+```c
+Enter size of array: 8
+Enter 8 elements: -2 -3 4 -1 -2 1 5 -3
+Maximum sum of a contiguous subarray = 7
+```
+### 41. Find the minimum sum of a contiguous subarray.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 41. Find the minimum sum of a contiguous subarray. *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+int main() {
+    int n, i;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    int current_sum = arr[0];
+    int min_sum = arr[0];
+
+    for (i = 1; i < n; i++) {
+        // either start new subarray or add to current one
+        if (arr[i] < current_sum + arr[i])
+            current_sum = arr[i];
+        else
+            current_sum = current_sum + arr[i];
+
+        // update overall minimum
+        if (current_sum < min_sum)
+            min_sum = current_sum;
+    }
+
+    printf("Minimum sum of contiguous subarray = %d\n", min_sum);
+
+    return 0;
+}
+
+```
+### Output
+```c
+Enter size of array: 7
+Enter 7 elements: 3 -4 2 -3 -1 7 -5
+Minimum sum of contiguous subarray = -6
+```
+### 42. Find the length of the longest increasing subsequence
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *42. Find the length of the longest increasing subsequence *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+int main() {
+    int n, i, j, max = 0;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n], lis[n];
+
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+        lis[i] = 1; // each element is LIS of length 1
+    }
+
+    // Calculating LIS values in a bottom-up manner
+    for (i = 1; i < n; i++) {
+        for (j = 0; j < i; j++) {
+            if (arr[i] > arr[j] && lis[i] < lis[j] + 1) {
+                lis[i] = lis[j] + 1;
+            }
+        }
+    }
+
+    // Find maximum in lis[]
+    for (i = 0; i < n; i++) {
+        if (max < lis[i])
+            max = lis[i];
+    }
+
+    printf("Length of the longest increasing subsequence = %d\n", max);
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 8
+Enter 8 elements: 10 22 9 33 21 50 41 60
+Length of the longest increasing subsequence = 5
+```
+### 43. Find the length of the longest subarray with sum equal to k.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *43. Find the length of the longest subarray with sum equal to k. *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+int main() {
+    int n, i, j, k;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter the target sum (k): ");
+    scanf("%d", &k);
+
+    int maxLen = 0;
+
+    // Check all subarrays
+    for (i = 0; i < n; i++) {
+        int sum = 0;
+        for (j = i; j < n; j++) {
+            sum += arr[j];
+            if (sum == k) {
+                int len = j - i + 1;
+                if (len > maxLen)
+                    maxLen = len;
+            }
+        }
+    }
+
+    printf("Length of longest subarray with sum %d = %d\n", k, maxLen);
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 5
+Enter 5 elements: 1 2 4 5 6
+Enter the target sum (k): 11
+Length of longest subarray with sum 11 = 3
+```
+### 44. Find the maximum difference between two elements such that larger comes after smaller. uisng arrays
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *44. Find the maximum difference between two elements such that larger comes after smaller. uisng arrays *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+int main() {
+    int n, i;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    int min = arr[0];
+    int maxDiff = arr[1] - arr[0];
+
+    for (i = 1; i < n; i++) {
+        if (arr[i] - min > maxDiff)
+            maxDiff = arr[i] - min;
+
+        if (arr[i] < min)
+            min = arr[i];
+    }
+
+    printf("Maximum difference = %d\n", maxDiff);
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 7
+Enter 7 elements: 1 2 5 2 3 5 3
+Maximum difference = 4
+```
