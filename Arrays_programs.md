@@ -1960,3 +1960,115 @@ Enter size of array: 7
 Enter 7 elements: 1 2 5 2 3 5 3
 Maximum difference = 4
 ```
+### 45. Implement binary search on a sorted array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 45. Implement binary search on a sorted array. *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int main() {
+    int n, i, target;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d sorted elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter element to search: ");
+    scanf("%d", &target);
+
+    int low = 0, high = n - 1, mid, found = 0;
+
+    while (low <= high) {
+        mid = (low + high) / 2;
+
+        if (arr[mid] == target) {
+            found = 1;
+            break;
+        } else if (target < arr[mid]) {
+            high = mid - 1;
+        } else {
+            low = mid + 1;
+        }
+    }
+
+    if (found)
+        printf("Element %d found at index %d\n", target, mid);
+    else
+        printf("Element %d not found in the array.\n", target);
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of array: 6
+Enter 6 sorted elements: 1 3 4 5 6 7
+Enter element to search: 5
+Element 5 found at index 3
+```
+### 46. Merge two sorted arrays into a single sorted array.
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 46. Merge two sorted arrays into a single sorted array. *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int main() {
+    int n1, n2, i = 0, j = 0, k = 0;
+
+    printf("Enter size of first sorted array: ");
+    scanf("%d", &n1);
+    int arr1[n1];
+    printf("Enter %d elements of first array:\n", n1);
+    for (i = 0; i < n1; i++) {
+        scanf("%d", &arr1[i]);
+    }
+
+    printf("Enter size of second sorted array: ");
+    scanf("%d", &n2);
+    int arr2[n2];
+    printf("Enter %d elements of second array:\n", n2);
+    for (i = 0; i < n2; i++) {
+        scanf("%d", &arr2[i]);
+    }
+
+    int mergedArr[n1 + n2];
+    i = j = k = 0;
+
+    // Merge arrays
+    while (i < n1 && j < n2) {
+        if (arr1[i] < arr2[j])
+            mergedArr[k++] = arr1[i++];
+        else
+            mergedArr[k++] = arr2[j++];
+    }
+
+    // Copy remaining elements
+    while (i < n1)
+        mergedArr[k++] = arr1[i++];
+    while (j < n2)
+        mergedArr[k++] = arr2[j++];
+
+    // Print merged array
+    printf("Merged array: ");
+    for (i = 0; i < n1 + n2; i++)
+        printf("%d ", mergedArr[i]);
+    printf("\n");
+
+    return 0;
+}
+```
+### Output
+```c
+Enter size of first sorted array: 3
+Enter 3 elements of first array: 1 2 3
+Enter size of second sorted array: 3
+Enter 3 elements of second array: 4 5 6
+Merged array: 1 2 3 4 5 6
+```
