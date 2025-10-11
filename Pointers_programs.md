@@ -2036,7 +2036,6 @@ Length of longest subarray with sum 11 = 3
  *44. Find the maximum difference between two elements such that larger comes after smaller. uisng arrays *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #include <stdio.h>
-
 int main() {
     int n, i;
 
@@ -2080,7 +2079,6 @@ Maximum difference = 4
  * 45. Implement binary search on a sorted array. *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #include <stdio.h>
-
 int main() {
     int n, i, target;
 
@@ -2088,10 +2086,11 @@ int main() {
     scanf("%d", &n);
 
     int arr[n];
+    int *ptr = arr;  // pointer to the array
+
     printf("Enter %d sorted elements:\n", n);
-    for (i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-    }
+    for (i = 0; i < n; i++)
+        scanf("%d", ptr + i);  // input via pointer
 
     printf("Enter element to search: ");
     scanf("%d", &target);
@@ -2101,10 +2100,10 @@ int main() {
     while (low <= high) {
         mid = (low + high) / 2;
 
-        if (arr[mid] == target) {
+        if (*(ptr + mid) == target) {
             found = 1;
             break;
-        } else if (target < arr[mid]) {
+        } else if (target < *(ptr + mid)) {
             high = mid - 1;
         } else {
             low = mid + 1;
@@ -2118,6 +2117,7 @@ int main() {
 
     return 0;
 }
+
 ```
 ### Output
 ```c
@@ -2132,51 +2132,43 @@ Element 5 found at index 3
  * 46. Merge two sorted arrays into a single sorted array. *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #include <stdio.h>
-
 int main() {
     int n1, n2, i = 0, j = 0, k = 0;
 
     printf("Enter size of first sorted array: ");
     scanf("%d", &n1);
-    int arr1[n1];
+    int arr1[n1], arr2[n2], merged[n1 + n2];
+    int *ptr1 = arr1, *ptr2 = arr2, *mPtr = merged;
+
     printf("Enter %d elements of first array:\n", n1);
-    for (i = 0; i < n1; i++) {
-        scanf("%d", &arr1[i]);
-    }
+    for (i = 0; i < n1; i++)
+        scanf("%d", ptr1 + i);
 
     printf("Enter size of second sorted array: ");
     scanf("%d", &n2);
-    int arr2[n2];
     printf("Enter %d elements of second array:\n", n2);
-    for (i = 0; i < n2; i++) {
-        scanf("%d", &arr2[i]);
-    }
+    for (i = 0; i < n2; i++)
+        scanf("%d", ptr2 + i);
 
-    int mergedArr[n1 + n2];
     i = j = k = 0;
 
     // Merge arrays
-    while (i < n1 && j < n2) {
-        if (arr1[i] < arr2[j])
-            mergedArr[k++] = arr1[i++];
-        else
-            mergedArr[k++] = arr2[j++];
-    }
+    while (i < n1 && j < n2)
+        *(mPtr + k++) = (*(ptr1 + i) < *(ptr2 + j)) ? *(ptr1 + i++) : *(ptr2 + j++);
 
     // Copy remaining elements
-    while (i < n1)
-        mergedArr[k++] = arr1[i++];
-    while (j < n2)
-        mergedArr[k++] = arr2[j++];
+    while (i < n1) *(mPtr + k++) = *(ptr1 + i++);
+    while (j < n2) *(mPtr + k++) = *(ptr2 + j++);
 
     // Print merged array
     printf("Merged array: ");
     for (i = 0; i < n1 + n2; i++)
-        printf("%d ", mergedArr[i]);
+        printf("%d ", *(mPtr + i));
     printf("\n");
 
     return 0;
 }
+
 ```
 ### Output
 ```c
@@ -2192,7 +2184,6 @@ Merged array: 1 2 3 4 5 6
  * 47. Find the kth smallest element in an array.  *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #include <stdio.h>
-
 int main() {
     int n, k, i, j, temp;
 
@@ -2200,28 +2191,31 @@ int main() {
     scanf("%d", &n);
 
     int arr[n];
+    int *ptr = arr;  // pointer to the array
+
     printf("Enter %d elements:\n", n);
     for(i = 0; i < n; i++)
-        scanf("%d", &arr[i]);
+        scanf("%d", ptr + i);  // input using pointer
 
     printf("Enter k: ");
     scanf("%d", &k);
 
-    // Sort array using simple bubble sort
+    // Sort array in ascending order using pointers
     for(i = 0; i < n-1; i++) {
         for(j = 0; j < n-i-1; j++) {
-            if(arr[j] > arr[j+1]) {
-                temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
+            if(*(ptr + j) > *(ptr + j + 1)) {
+                temp = *(ptr + j);
+                *(ptr + j) = *(ptr + j + 1);
+                *(ptr + j + 1) = temp;
             }
         }
     }
 
-    printf("The %dth smallest element = %d\n", k, arr[k-1]);
+    printf("The %dth smallest element = %d\n", k, *(ptr + k - 1));
 
     return 0;
 }
+
 ```
 ### Output
 ```c
@@ -2236,7 +2230,6 @@ The 4th smallest element = 4
  * 48. Find the kth largest element in an array.  *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #include <stdio.h>
-
 int main() {
     int n, k, i, j, temp;
 
@@ -2244,28 +2237,31 @@ int main() {
     scanf("%d", &n);
 
     int arr[n];
+    int *ptr = arr;  // pointer to the array
+
     printf("Enter %d elements:\n", n);
     for(i = 0; i < n; i++)
-        scanf("%d", &arr[i]);
+        scanf("%d", ptr + i);
 
     printf("Enter k: ");
     scanf("%d", &k);
 
-    // Sort array in ascending order using bubble sort
+    // Sort array in ascending order using pointers
     for(i = 0; i < n-1; i++) {
         for(j = 0; j < n-i-1; j++) {
-            if(arr[j] > arr[j+1]) {
-                temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
+            if(*(ptr + j) > *(ptr + j + 1)) {
+                temp = *(ptr + j);
+                *(ptr + j) = *(ptr + j + 1);
+                *(ptr + j + 1) = temp;
             }
         }
     }
 
-    printf("The %dth largest element = %d\n", k, arr[n - k]);
+    printf("The %dth largest element = %d\n", k, *(ptr + n - k));
 
     return 0;
 }
+
 ```
 ### Output
 ```c
