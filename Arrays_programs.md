@@ -2224,17 +2224,29 @@ int main(){
         for(i=0;i<n;i++){
                 scanf("%d",&arr[i]);
         }
+        int leaders[n];  // to store leader elements
+        int count =0;    // number of leaders found
 
         int max_from_right =arr[n-1]; //rightmost element is always leader
-        printf("Leader elements : %d ",max_from_right);
+        leaders[count++] = max_from_right;
 
-        for(i=n-2;i>=0;i--){  //Traverse from second last to first:x                if(arr[i] > max_from_right){
+
+        for(i=n-2;i>=0;i--){  //Traverse from second last to first:x
+                 if(arr[i] > max_from_right){
+
                         max_from_right = arr[i];
 
-                        printf("%d",max_from_right);
+                        leaders[count++] = max_from_right;
+
                 }
+
         }
 
+        printf("Leader elements in original order : ");
+
+        for(i=count -1 ;i>=0;i--){
+                printf("%d  ",leaders[i]);
+        }
         return 0;
 }
 ```
