@@ -2160,4 +2160,87 @@ Enter 6 elements: 7 10 4 3 20 15
 Enter k: 3
 The 3th largest element = 10
 ```
+### 49. Find the equilibrium index (where left sum = right sum).
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 49. Find the equilibrium index (where left sum = right sum).  *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+int main(){
+        int n,i;
+        printf("Enter size of array :");
+        scanf("%d",&n);
 
+        int arr[n];
+
+        printf("Enter %d elements : ",n);
+        for(i=0;i<n;i++){
+                scanf("%d",&arr[i]);
+        }
+
+        int totalsum=0,leftsum=0;
+
+        for(i=0;i<n;i++)
+                totalsum+=arr[i];
+        int found=0;
+        for(i=0;i<n;i++){
+                totalsum -= arr[i];
+
+                if(leftsum == totalsum ){
+                        printf("Equilibrium index found at position : %d\n",i);
+
+                        found =1;
+                }
+                leftsum+=arr[i];
+
+        }
+        if(!found)
+                printf("No equilibrium index found ");
+        return 0;
+}
+```
+### Output
+```c
+Enter size of array :7
+Enter 7 elements : -7 1 5 2 -4 3 0
+Equilibrium index found at position : 3
+Equilibrium index found at position : 6
+```
+### 50. Find the leader elements in an array (element greater than all elements to its right).
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 50. Find the leader elements in an array (element greater than all elements to its right).  *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include<stdio.h>
+int main(){
+        int i,n;
+
+        printf("Enter size of arr : ");
+        scanf("%d",&n);
+
+        int arr[n];
+
+        printf("Enter %d elements : ",n);
+        for(i=0;i<n;i++){
+                scanf("%d",&arr[i]);
+        }
+
+        int max_from_right =arr[n-1]; //rightmost element is always leader
+        printf("Leader elements : %d ",max_from_right);
+
+        for(i=n-2;i>=0;i--){  //Traverse from second last to first:x                if(arr[i] > max_from_right){
+                        max_from_right = arr[i];
+
+                        printf("%d",max_from_right);
+                }
+        }
+
+        return 0;
+}
+```
+### Output
+```c
+Enter size of arr : 6
+Enter 6 elements : 16 17 4 3 5 2
+Leader elements in original order : 17 5 2
+```
