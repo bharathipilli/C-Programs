@@ -999,10 +999,41 @@ sum=10
 ```
 ### 33. Add one to number using bit-wise operators 
 ```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 33. Add one to number using bit-wise operators   *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+
+int addOne(int n)
+{
+    int m = 1;
+
+    while (n & m) {
+        n = n ^ m;   // turn 1 to 0
+        m = m << 1;  // move carry
+    }
+
+    n = n ^ m;       // add carry
+    return n;
+}
+
+int main()
+{
+    int n;
+
+    printf("Enter a number: ");
+    scanf("%d", &n);
+
+    printf("After adding 1: %d\n", addOne(n));
+
+    return 0;
+}
 
 ```
 ### Output
 ```c
+Enter a number: 15
+After adding 1: 16
 
 ```
 ### 34. Find all elements of XOR value in given elements
@@ -1358,6 +1389,9 @@ a ^ b = 15
 ```
 ### 44. check given number is power of 4 or not
 ```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *   44. check given number is power of 4 or not   *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #include <stdio.h>
 
 int isPowerOf4(int n)
