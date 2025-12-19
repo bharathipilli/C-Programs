@@ -2371,3 +2371,58 @@ Enter size of arr : 6
 Enter 6 elements : 16 17 4 3 5 2
 Leader elements in original order : 17 5 2
 ```
+
+### 51. Implement atoi implementation 
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 51. write a c program to Implement atoi implementation  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<string.h>
+
+int my_atoi(char *ptr);
+
+int main(void)
+{
+  char str[100];
+  int num;
+  printf("Enter String :");
+  fgets(str,99,stdin);
+  str[strcspn(str,"\n")]='\0';
+  num=my_atoi(str);
+  printf("%d\n",num);
+  return 0;
+}
+
+int my_atoi(char *ptr)
+{
+  int num=0,i=0,sign=1;
+  while(*(ptr+i)==' ' || *(ptr+i)=='\t')
+  {
+    i++;
+  }
+  if(*(ptr+i)=='-' || *(ptr+i)=='+')
+  {
+    if(*(ptr+i)=='-')
+    {
+      sign=-1;
+    }
+    i++;
+  }
+  while((*(ptr+i)>='0') && (*(ptr+i)<='9'))
+  {
+    num=( num * 10 ) + (*(ptr+i)-48);
+    i++;
+  }
+  return num * sign;
+}
+```
+### Output
+```c
+Enter String :-12345
+The Integer Value=-12345
+
+Enter String :lakshmi123
+The Integer Value=0
+```
