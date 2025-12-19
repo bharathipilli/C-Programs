@@ -1358,10 +1358,38 @@ a ^ b = 15
 ```
 ### 44. check given number is power of 4 or not
 ```c
+#include <stdio.h>
+
+int isPowerOf4(int n)
+{
+    if (n > 0 &&
+        (n & (n - 1)) == 0 &&
+        (n & 0x55555555))
+        return 1;
+    else
+        return 0;
+}
+
+int main()
+{
+    int n;
+
+    printf("Enter a number: ");
+    scanf("%d", &n);
+
+    if (isPowerOf4(n))
+        printf("Yes, power of 4\n");
+    else
+        printf("No, not power of 4\n");
+
+    return 0;
+}
 
 ```
 ### Output
 ```c
+Enter a number: 16
+Yes, power of 4
 
 ```
 ### 45. Toggle All bits up to the Most significant bits
