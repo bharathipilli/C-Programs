@@ -1,5 +1,8 @@
 ###  1.Creating and displaying list
-'''
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *  1.Creating and displaying list  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -33,7 +36,11 @@ int main() {
     third->next = NULL;
 
     display(head);
-'''
-Output : 10 -> 20 -> 30 -> NULL
     return 0;
 }
+
+```
+### Output
+```c
+10 -> 20 -> 30 -> NULL 
+```
