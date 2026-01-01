@@ -38,8 +38,6 @@ Array elements are :10 20 30 40 50
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 2. Find the sum of all elements in an array using pointers  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-
 #include<stdio.h>
 int main(){
         int n,i,sum=0;
