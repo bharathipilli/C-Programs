@@ -782,3 +782,96 @@ Enter Course Name: Linux
 Enter Grade: 98
 Record added successfully!
 ```
+### 15.Write a C program to store employee details which contains three structures first structure contains personal details of employee ( i.e. first name ,last name ,employee number ) second structure contains address (i.e. city ,state , street number and house number) and third structure contains 2 pointer to structure of first and second structure and one self-reference pointer
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 15.Write a C program to store employee details which contains three structures first structure contains personal details of employee ( i.e. first name ,last name ,employee number ) second structure contains address (i.e. city ,state , street number and house number) and third structure contains 2 pointer to structure of first and second structure and one self-reference pointer   *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include <stdio.h>
+#include <stdlib.h>
+// First structure: Personal details 
+struct Personal {
+    char firstName[30];
+    char lastName[30];
+    int empNo;
+};
+
+// Second structure: Address 
+struct Address {
+    char city[30];
+    char state[30];
+    int streetNo;
+    int houseNo;
+};
+
+// Third structure: contains pointers 
+struct Employee {
+    struct Personal *p;      // pointer to first structure
+    struct Address *a;       // pointer to second structure
+    struct Employee *next;   // self-referential pointer
+};
+
+int main() {
+    // Create objects of first two structures 
+    struct Personal per;
+    struct Address add;
+
+    //Input personal details 
+    printf("Enter first name: ");
+    scanf("%s", per.firstName);
+
+    printf("Enter last name: ");
+    scanf("%s", per.lastName);
+
+    printf("Enter employee number: ");
+    scanf("%d", &per.empNo);
+
+    // Input address details 
+    printf("Enter city: ");
+    scanf("%s", add.city);
+
+    printf("Enter state: ");
+    scanf("%s", add.state);
+
+    printf("Enter street number: ");
+    scanf("%d", &add.streetNo);
+
+    printf("Enter house number: ");
+    scanf("%d", &add.houseNo);
+
+    // Create third structure object 
+    struct Employee emp;
+
+    emp.p = &per;    // pointing to personal structure
+    emp.a = &add;    // pointing to address structure
+    emp.next = NULL; // no next employee (single node)
+
+    // Display details using third structure 
+    printf("\n--- Employee Details ---\n");
+    printf("Name: %s %s\n", emp.p->firstName, emp.p->lastName);
+    printf("Employee Number: %d\n", emp.p->empNo);
+    printf("Address: House No %d, Street No %d, %s, %s\n",
+           emp.a->houseNo,
+           emp.a->streetNo,
+           emp.a->city,
+           emp.a->state);
+
+    return 0;
+}
+```
+### Output
+```c
+Enter first name: Bharathi
+Enter last name: Pilli
+Enter employee number: 101
+Enter city: Hyderabad
+Enter state: Telangana
+Enter street number: 12
+Enter house number: 45
+
+--- Employee Details ---
+Name: Bharathi Pilli
+Employee Number: 101
+Address: House No 45, Street No 12, Hyderabad, Telangana
+
+```
